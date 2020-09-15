@@ -1,14 +1,8 @@
 {
   "parser": "babel-eslint",
-  "extends": [
-    "standard",
-    "standard-react",
-    "plugin:prettier/recommended",
-    "prettier/standard",
-    "prettier/react"
-  ],
+  "extends": ["standard", "standard-react", "prettier"],
   "env": {
-    "node": true
+    "es6": true
   },
   "parserOptions": {
     "ecmaVersion": 2020,

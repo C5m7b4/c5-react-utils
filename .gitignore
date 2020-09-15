@@ -3,6 +3,7 @@
 
 # dependencies
 node_modules
+coverage
 
 # builds
 build
@@ -17,6 +18,8 @@ dist
 .env.test.local
 .env.production.local
 
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
