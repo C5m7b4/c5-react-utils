@@ -1,0 +1,22 @@
+.sortableColumn {
+  display: grid;
+  grid-template-columns: 75% 1fr 1fr;
+}
+
+.sortableDescription {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sortableIcon {
+  cursor: pointer;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.filterableIcon {
+  cursor: pointer;
+  text-align: right;
+  padding-right: 5px;
+}
