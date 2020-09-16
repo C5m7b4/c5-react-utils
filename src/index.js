@@ -12,6 +12,8 @@ import {
   formatMoney,
   pad,
 } from "./lib/utils";
+import Column from "./lib/Column/Column";
+import ColumnStyles from "./lib/Column/Column.css";
 
 export const ExampleComponent = ({ text }) => {
   return <div className={styles.test}>Example Component: {text}</div>;
@@ -28,4 +30,6 @@ export {
   getDayOfWeek,
   formatMoney,
   pad,
+  Column,
+  ColumnStyles,
 };
