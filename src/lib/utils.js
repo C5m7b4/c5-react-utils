@@ -125,6 +125,78 @@ const truncateString = (input, length) => {
   }
 };
 
+const getDayOfWeek = (d) => {
+  const myDate = new Date(d);
+  const dayOfWeek = myDate.getDay();
+  switch (dayOfWeek) {
+    case 0:
+      return "Sunday";
+    case 1:
+      return "Monday";
+    case 2:
+      return "Tuesday";
+    case 3:
+      return "Wednesday";
+    case 4:
+      return "Thursday";
+    case 5:
+      return "Friday";
+    case 6:
+      return "Saturday";
+  }
+};
+
+const formatMoney = (
+  amount,
+  decimalPlaces = 2,
+  decimal = ".",
+  thousands = ","
+) => {
+  try {
+    decimalPlaces = Math.abs(decimalPlaces);
+    decimalPlaces = isNaN(decimalPlaces) ? 2 : decimalPlaces;
+
+    const negativeSign = amount < 0 ? "-" : "";
+
+    const i = parseInt(
+      (amount = Math.abs(Number(amount) || 0).toFixed(decimalPlaces))
+    ).toString();
+    const j = i.length > 3 ? i.length % 3 : 0;
+
+    return (
+      negativeSign +
+      (j ? i.stustr(0, j) + thousands : "") +
+      i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) +
+      (decimalPlaces
+        ? decimal +
+          Math.abs(amount - i)
+            .toFixed(decimalPlaces)
+            .slice(2)
+        : "")
+    );
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const pad = (input, desiredLength, padChar, direction) => {
+  if (typeof input !== "string") return input;
+  if (typeof desiredLength !== "number") return input;
+  if (typeof padChar !== "string") return input;
+
+  const charsToPad = desiredLength - input.length;
+
+  const padding = [...Array(Number(charsToPad))].map((c, i) => {
+    return padChar;
+  });
+
+  if (direction.toLowerCase() === "left") {
+    return padding.join("") + input;
+  } else {
+    return input + padding.join("");
+  }
+};
+
 export {
   isValid,
   formatDate,
@@ -133,4 +205,7 @@ export {
   encrypt,
   decrypt,
   truncateString,
+  getDayOfWeek,
+  formatMoney,
+  pad,
 };

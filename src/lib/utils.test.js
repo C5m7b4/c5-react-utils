@@ -5,6 +5,9 @@ import {
   addDays,
   encrypt,
   truncateString,
+  getDayOfWeek,
+  formatMoney,
+  pad,
 } from "./utils";
 
 describe("utils.js - isValid", () => {
@@ -124,5 +127,45 @@ describe("utils.js encrypt", () => {
 describe("utils.js truncateString", () => {
   it("should return 'test' when passed testing with length of 4", () => {
     expect(truncateString("testing", 4)).toBe("test");
+  });
+  it("should return 'test' when passed 'test' with a length of 4", () => {
+    expect(truncateString("test", 4)).toBe("test");
+  });
+});
+
+describe("utils.js dayOfWeek", () => {
+  it("should return Wednesday when passed a value of 1/1/2020", () => {
+    expect(getDayOfWeek(new Date("1/1/2020"))).toBe("Wednesday");
+  });
+});
+
+describe("utils.js formatMoney", () => {
+  it("should return 1.45 when recieving multiple decimal places using the defaults", () => {
+    expect(formatMoney("1.45182903")).toBe("1.45");
+  });
+  it("should return 1.45 when passed multiple decimal places", () => {
+    expect(formatMoney("1.4519465", 2)).toBe("1.45");
+  });
+});
+
+describe("utils.js pad", () => {
+  it("should return the input if not given a string", () => {
+    expect(pad(5, 1, "0")).toBe(5);
+  });
+  it("should return the input if given an object", () => {
+    const obj = { name: "Mikto", job: "Make cool shit" };
+    expect(pad(obj)).toBe(obj);
+  });
+  it("should return the input if the desired length is not a number", () => {
+    expect(pad("somestring", "5")).toBe("somestring");
+  });
+  it("should return the input if the padChar is not a string", () => {
+    expect(pad("somestring", 10, 5)).toBe("somestring");
+  });
+  it("should return the input with the correct left padding", () => {
+    expect(pad("1", 3, "0", "left")).toBe("001");
+  });
+  it("should return the input with the correct right padding", () => {
+    expect(pad("1", 3, "0", "right")).toBe("100");
   });
 });
